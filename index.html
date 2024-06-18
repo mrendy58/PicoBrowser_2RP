@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>My New Website</title>
+
+    <link
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+        rel="stylesheet"
+    />
+    <link
+        href="https://getbootstrap.com/docs/3.3/examples/jumbotron-narrow/jumbotron-narrow.css"
+        rel="stylesheet"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+    <div class="container">
+        <div class="header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation">
+                <a href="#" class="unimplemented">Sign In</a>
+            </li>
+            <li role="presentation">
+                <a href="#" class="unimplemented">Sign Out</a>
+            </li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">My New Website</h3>
+        </div>
+
+        <div
+        id="alertContainer"
+        class="alert alert-danger alert-dismissible"
+        role="alert"
+        style="display: none"
+        >
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>You&#39;re not picobrowser!</strong>
+        <span id="userAgent"></span>
+        </div>
+
+        <div
+        id="notImplementedAlert"
+        class="alert alert-warning alert-dismissible"
+        role="alert"
+        style="display: none"
+        >
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>This isn't implemented yet.</strong>
+        </div>
+
+        <div class="jumbotron">
+        <p class="lead"></p>
+        <p>
+            <a href="#" id="flagButton" class="btn btn-lg btn-success btn-block"
+            >Flag</a
+            >
+        </p>
+        </div>
+
+        <div
+        id="flagContainer"
+        class="alert alert-success alert-dismissible"
+        role="alert"
+        style="display: none"
+        >
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Congratulations! You Found The Flag!!!</strong>
+        <p style="text-align: center; font-size: 30px">
+            <b>Flag</b>: <code>TI404{P1C0BR0W53R_T1C_K3L0MP0K2RP}</code>
+        </p>
+        </div>
+
+        <footer class="footer">
+        <p>&copy; PicoCTF 2024 2RP</p>
+        </footer>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+        $("#flagButton").click(function () {
+            var userAgent = navigator.userAgent;
+            if (userAgent.indexOf("picobrowser") === -1) {
+            $("#userAgent").text(userAgent);
+            $("#alertContainer").show();
+            $("#flagContainer").hide();
+            } else {
+            $("#flagContainer").show();
+            $("#alertContainer").hide();
+            }
+        });
+
+        $(".close").click(function () {
+            $(this).parent().hide();
+        });
+
+        $("a.unimplemented").click(function (event) {
+            event.preventDefault();
+            $("#notImplementedAlert").show();
+        });
+        });
+    </script>
+    </body>
+</html>
